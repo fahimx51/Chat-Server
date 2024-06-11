@@ -21,6 +21,7 @@ First, clone the repository to your local machine using Git:
 ```bash
 git clone https://github.com/yourusername/chat-application.git
 cd chat-application
+```
 
 
 ### 2. Run the Server
