@@ -63,7 +63,12 @@ class ChatServer:
         while self.running:
             try:
                 msg = client.recv(1024).decode('utf-8')
-                if msg:
+                if msg == "logout":
+                    self.display_message(f"{client.getpeername()[0]} has logged out.")
+                    self.clients.remove(client)
+                    client.close()
+                    break
+                elif msg:
                     self.broadcast(msg, client)
                     self.display_message(msg)
             except:

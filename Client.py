@@ -33,6 +33,9 @@ class ChatClient:
         self.connect_button = tk.Button(self.top_frame, text="Connect", command=self.connect_to_server)
         self.connect_button.pack(side=tk.LEFT, padx=5)
         
+        self.logout_button = tk.Button(self.top_frame, text="Logout", command=self.logout, state=tk.DISABLED)
+        self.logout_button.pack(side=tk.LEFT, padx=5)
+        
         self.text_area = scrolledtext.ScrolledText(master, state='disabled')
         self.text_area.pack(padx=10, pady=10, fill=tk.BOTH, expand=True)
         
@@ -59,6 +62,7 @@ class ChatClient:
         threading.Thread(target=self.receive_messages).start()
         
         self.connect_button.config(state=tk.DISABLED)
+        self.logout_button.config(state=tk.NORMAL)
         self.send_button.config(state=tk.NORMAL)
         self.display_message(f"Connected as {self.username}")
 
@@ -74,10 +78,25 @@ class ChatClient:
                 break
 
     def send_message(self):
-        msg = f"{self.username}: {self.msg_entry.get()}"
-        self.display_message(msg)  # Display message locally
-        self.client.send(msg.encode('utf-8'))
-        self.msg_entry.delete(0, tk.END)
+        if self.running:
+            msg = f"{self.username}: {self.msg_entry.get()}"
+            self.display_message(msg)  # Display message locally
+            self.client.send(msg.encode('utf-8'))
+            self.msg_entry.delete(0, tk.END)
+        else:
+            self.display_message("You are not connected to the server.")
+
+    def logout(self):
+        if self.running:
+            self.client.send("logout".encode('utf-8'))
+            self.client.close()
+            self.running = False
+            self.connect_button.config(state=tk.NORMAL)
+            self.logout_button.config(state=tk.DISABLED)
+            self.send_button.config(state=tk.DISABLED)
+            self.display_message("You have been logged out.")
+        else:
+            self.display_message("You are not connected to the server.")
 
     def display_message(self, msg):
         self.text_area.config(state='normal')
