@@ -6,15 +6,15 @@ This project is a chat application with a server and multiple clients. Clients c
 - Foisal Ahmed Fahim (221-134-008)
 - Dipto Deb Nath (221-134-013)
 
-## Prerequisites
+## Prerequisites 
 
-Before running this project, ensure you have the following installed on your device:
+Before running this project, ensure you have the following installed on your device: 
 
-- Python 3.x
+- Python 3.x 
 - `tkinter` library (usually comes pre-installed with Python)
 - An IDE or text editor (VS Code is recommended)
 
-## How to Run the Project
+## How to Run the Project 
 
 ### 1. Clone the Repository
 First, clone the repository to your local machine using Git:
@@ -40,7 +40,7 @@ The server GUI consists of:
 
 When you start the server, the IP address and port number are displayed in the GUI, and clients can connect using these details. The text area shows all messages sent by the clients and status messages like when a client connects or disconnects.
 
-## Client GUI Description
+## Client GUI Description 
 
 The client GUI consists of:
 - **Username Entry**: Field to enter your username.
