@@ -22,7 +22,7 @@ First, clone the repository to your local machine using Git:
 git clone https://github.com/yourusername/chat-application.git
 cd chat-application
 
-2. Run the Server
+### 2. Run the Server
 Open a terminal and navigate to the project directory. Run the server script:
-
+```bash
 python server.py
